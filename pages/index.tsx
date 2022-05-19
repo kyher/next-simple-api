@@ -1,9 +1,28 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import { useEffect, useState } from 'react'
 import { Card } from '../components/Card'
 import styles from '../styles/Home.module.css'
+import { Book } from '../types/Book'
 
 const Home: NextPage = () => {
+
+  const [bookData, setBookData] = useState<Book[]>()
+  const [isLoading, setLoading] = useState(false)
+
+  useEffect(() => {
+    setLoading(true)
+    fetch('api/books')
+      .then((res) => res.json())
+      .then((bookData) => {
+        setBookData(bookData)
+        setLoading(false)
+      })
+  }, [])
+
+  if (isLoading) return <p>Loading...</p>
+  if (!bookData) return <p>No book data</p>
+
   return (
     <div className={styles.container}>
       <Head>
@@ -15,7 +34,7 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         <h1 className={styles.title}>Book List</h1>
         <div className={styles.bookList}>
-          <Card title='test' author='test author' />
+          {bookData.map(book => <Card title={book.title} author={book.author} />)}
         </div>
       </main>
     </div>
