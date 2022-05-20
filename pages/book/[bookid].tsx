@@ -7,19 +7,19 @@ import { useRouter } from "next/router";
 
 const Book: NextPage = () => {
   const [bookData, setBookData] = useState<Book>();
-  const [isLoading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
 
   useEffect(() => {
-    setLoading(true);
+    setIsLoading(true);
     if (!router.isReady) return;
     const { bookid } = router.query;
     fetch(`/api/book/${bookid}`)
       .then((res) => res.json())
       .then((bookData) => {
         setBookData(bookData);
-        setLoading(false);
+        setIsLoading(false);
       });
   }, [router.isReady]);
 

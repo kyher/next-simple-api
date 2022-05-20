@@ -7,15 +7,15 @@ import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
   const [bookData, setBookData] = useState<Book[]>();
-  const [isLoading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
+    setIsLoading(true);
     fetch("api/books")
       .then((res) => res.json())
       .then((bookData) => {
         setBookData(bookData);
-        setLoading(false);
+        setIsLoading(false);
       });
   }, []);
 
