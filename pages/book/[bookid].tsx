@@ -1,33 +1,30 @@
-import { Book } from '@prisma/client'
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import { useEffect, useState } from 'react'
-import styles from '../../styles/Home.module.css'
-import { useRouter } from 'next/router'
-
+import { Book } from "@prisma/client";
+import type { NextPage } from "next";
+import Head from "next/head";
+import { useEffect, useState } from "react";
+import styles from "../../styles/Home.module.css";
+import { useRouter } from "next/router";
 
 const Book: NextPage = () => {
+  const [bookData, setBookData] = useState<Book>();
+  const [isLoading, setLoading] = useState(false);
 
-    const [bookData, setBookData] = useState<Book>()
-    const [isLoading, setLoading] = useState(false)
+  const router = useRouter();
 
-    const router = useRouter()
-    
-  
-    useEffect(() => {
-      setLoading(true)
-      if(!router.isReady) return;
-      const {bookid}  = router.query
-      fetch(`/api/book/${bookid}`)
-        .then((res) => res.json())
-        .then((bookData) => {
-          setBookData(bookData)
-          setLoading(false)
-        })
-    }, [router.isReady])
-  
-    if (isLoading) return <p>Loading...</p>
-    if (!bookData) return <p>No book data</p>
+  useEffect(() => {
+    setLoading(true);
+    if (!router.isReady) return;
+    const { bookid } = router.query;
+    fetch(`/api/book/${bookid}`)
+      .then((res) => res.json())
+      .then((bookData) => {
+        setBookData(bookData);
+        setLoading(false);
+      });
+  }, [router.isReady]);
+
+  if (isLoading) return <p>Loading...</p>;
+  if (!bookData) return <p>No book data</p>;
 
   return (
     <div className={styles.container}>
@@ -38,10 +35,10 @@ const Book: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-          <h1 className={styles.title}>{bookData.title}</h1>
+        <h1 className={styles.title}>{bookData.title}</h1>
       </main>
     </div>
-  )
-}
+  );
+};
 
-export default Book
+export default Book;
