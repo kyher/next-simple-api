@@ -6,21 +6,21 @@ import { Card } from "../components/Card";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
-  const [bookData, setBookData] = useState<Book[]>();
+  const [books, setBooks] = useState<Book[]>();
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
     fetch("api/books")
       .then((res) => res.json())
-      .then((bookData) => {
-        setBookData(bookData);
+      .then((books) => {
+        setBooks(books);
         setIsLoading(false);
       });
   }, []);
 
   if (isLoading) return <p>Loading...</p>;
-  if (!bookData) return <p>No book data</p>;
+  if (!books) return <p>No book data</p>;
 
   return (
     <div className={styles.container}>
@@ -33,7 +33,7 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         <h1 className={styles.title}>Book List</h1>
         <div className={styles.bookList}>
-          {bookData.map((book) => (
+          {books.map((book) => (
             <Card
               key={book.id}
               id={book.id}

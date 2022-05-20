@@ -6,7 +6,7 @@ import styles from "../../styles/Home.module.css";
 import { useRouter } from "next/router";
 
 const Book: NextPage = () => {
-  const [bookData, setBookData] = useState<Book>();
+  const [book, setBook] = useState<Book>();
   const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
@@ -17,14 +17,14 @@ const Book: NextPage = () => {
     const { bookid } = router.query;
     fetch(`/api/book/${bookid}`)
       .then((res) => res.json())
-      .then((bookData) => {
-        setBookData(bookData);
+      .then((book) => {
+        setBook(book);
         setIsLoading(false);
       });
   }, [router.isReady]);
 
   if (isLoading) return <p>Loading...</p>;
-  if (!bookData) return <p>No book data</p>;
+  if (!book) return <p>No book data</p>;
 
   return (
     <div className={styles.container}>
@@ -35,7 +35,7 @@ const Book: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>{bookData.title}</h1>
+        <h1 className={styles.title}>{book.title}</h1>
       </main>
     </div>
   );
