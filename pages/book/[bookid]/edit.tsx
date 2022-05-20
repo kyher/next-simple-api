@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import styles from "../../../styles/Home.module.css";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { BackButton } from "../../../components/BackButton";
 
 const EditBook: NextPage = () => {
   const [book, setBook] = useState<Book>();
@@ -36,6 +37,7 @@ const EditBook: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
+        <BackButton />
         <form method="post" action={`/api/book/${book.id}/edit`}>
           <label>Title:</label>
           <input

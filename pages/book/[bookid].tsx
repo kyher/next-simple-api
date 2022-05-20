@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import styles from "../../styles/Home.module.css";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { BackButton } from "../../components/BackButton";
 
 const Book: NextPage = () => {
   const [book, setBook] = useState<Book>();
@@ -36,6 +37,7 @@ const Book: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
+        <BackButton />
         <h1 className={styles.title}>{book.title}</h1>
         <p>{book.author}</p>
         <Link href={`/book/${book.id}/edit`}>
