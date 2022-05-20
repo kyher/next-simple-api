@@ -36,6 +36,10 @@ const Book: NextPage = () => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>{book.title}</h1>
+        <p>{book.author}</p>
+        <form method="post" action={`/api/book/${book.id}/delete`}>
+          <input type="submit" value="Delete" />
+        </form>
       </main>
     </div>
   );
