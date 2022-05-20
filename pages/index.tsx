@@ -1,9 +1,9 @@
+import { Book } from '@prisma/client'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import { Card } from '../components/Card'
 import styles from '../styles/Home.module.css'
-import { Book } from '../types/Book'
 
 const Home: NextPage = () => {
 
@@ -34,7 +34,7 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         <h1 className={styles.title}>Book List</h1>
         <div className={styles.bookList}>
-          {bookData.map(book => <Card title={book.title} author={book.author} />)}
+          {bookData.map(book => <Card key={book.id} id={book.id} title={book.title} author={book.author} />)}
         </div>
       </main>
     </div>

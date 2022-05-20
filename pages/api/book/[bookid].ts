@@ -5,6 +5,11 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 export default async function handler(req: NextApiRequest, res:NextApiResponse) {
-    const books = await prisma.book.findMany();
-    res.json(books);
+  const {bookid} = req.query
+    const book = await prisma.book.findUnique({
+      where: {
+        id: parseInt(bookid.toString())
+      }
+    });
+    res.json(book);
   }
