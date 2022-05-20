@@ -33,13 +33,8 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         <h1 className={styles.title}>Book List</h1>
         <div className={styles.bookList}>
-          {books.map((book) => (
-            <Card
-              key={book.id}
-              id={book.id}
-              title={book.title}
-              author={book.author}
-            />
+          {books.map(({ id, title, author }) => (
+            <Card key={id} id={id} title={title} author={author} />
           ))}
         </div>
       </main>
