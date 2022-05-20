@@ -17,6 +17,6 @@ export default async function handler(
     });
     res.redirect("/");
   } catch (error) {
-    res.status(403).json({ err: "Error occured while deleting a food item." });
+    res.status(403).json({ err: "Error occured while deleting a book item." });
   }
 }

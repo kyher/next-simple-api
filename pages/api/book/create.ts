@@ -15,6 +15,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     res.redirect("/");
   } catch (err) {
     console.log(err);
-    res.status(403).json({ err: "Error occured while adding a new food." });
+    res.status(403).json({ err: "Error occured while adding a new book." });
   }
 };
