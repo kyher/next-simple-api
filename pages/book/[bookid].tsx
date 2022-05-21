@@ -6,6 +6,7 @@ import styles from "../../styles/Home.module.css";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { BackButton } from "../../components/BackButton";
+import buttonStyles from "../../styles/Button.module.css";
 
 const Book: NextPage = () => {
   const [book, setBook] = useState<Book>();
@@ -40,12 +41,18 @@ const Book: NextPage = () => {
         <BackButton />
         <h1 className={styles.title}>{book.title}</h1>
         <p>{book.author}</p>
-        <Link href={`/book/${book.id}/edit`}>
-          <button>Edit</button>
-        </Link>
-        <form method="post" action={`/api/book/${book.id}/delete`}>
-          <input type="submit" value="Delete" />
-        </form>
+        <div className={styles.buttonContainer}>
+          <Link href={`/book/${book.id}/edit`}>
+            <button className={buttonStyles.button}>Edit</button>
+          </Link>
+          <form method="post" action={`/api/book/${book.id}/delete`}>
+            <input
+              className={buttonStyles.button}
+              type="submit"
+              value="Delete"
+            />
+          </form>
+        </div>
       </main>
     </div>
   );

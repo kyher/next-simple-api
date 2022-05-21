@@ -2,10 +2,10 @@ import { Book } from "@prisma/client";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useEffect, useState } from "react";
-import styles from "../../../styles/Home.module.css";
+import styles from "../../../styles/Form.module.css";
 import { useRouter } from "next/router";
-import Link from "next/link";
 import { BackButton } from "../../../components/BackButton";
+import buttonStyles from "../../../styles/Button.module.css";
 
 const EditBook: NextPage = () => {
   const [book, setBook] = useState<Book>();
@@ -38,7 +38,11 @@ const EditBook: NextPage = () => {
 
       <main className={styles.main}>
         <BackButton />
-        <form method="post" action={`/api/book/${book.id}/edit`}>
+        <form
+          className={styles.form}
+          method="post"
+          action={`/api/book/${book.id}/edit`}
+        >
           <label>Title:</label>
           <input
             name="title"
@@ -53,7 +57,7 @@ const EditBook: NextPage = () => {
             value={book.author}
             onChange={(e) => setBook({ ...book, author: e.target.value })}
           />
-          <input type="submit" value="Save" />
+          <input className={buttonStyles.button} type="submit" value="Save" />
         </form>
       </main>
     </div>

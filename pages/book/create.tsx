@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import styles from "../../styles/Home.module.css";
+import styles from "../../styles/Form.module.css";
+import buttonStyles from "../../styles/Button.module.css";
 
 const Home: NextPage = () => {
   return (
@@ -12,12 +13,12 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <form method="post" action="/api/book/create">
+        <form method="post" action="/api/book/create" className={styles.form}>
           <label>Title:</label>
           <input name="title" type="text" />
           <label>Author:</label>
           <input name="author" type="text" />
-          <input type="submit" value="Save" />
+          <input className={buttonStyles.button} type="submit" value="Save" />
         </form>
       </main>
     </div>

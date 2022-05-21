@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Card } from "../components/Card";
 import styles from "../styles/Home.module.css";
+import buttonStyles from "../styles/Button.module.css";
 
 const Home: NextPage = () => {
   const [books, setBooks] = useState<Book[]>();
@@ -38,7 +39,7 @@ const Home: NextPage = () => {
             <Card key={id} id={id} title={title} author={author} />
           ))}
           <Link href="/book/create">
-            <button>Create new book</button>
+            <button className={buttonStyles.button}>Create new book</button>
           </Link>
         </div>
       </main>
