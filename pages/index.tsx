@@ -3,10 +3,11 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useSession, signIn } from "next-auth/react";
 import { Card } from "../components/Card";
 import styles from "../styles/Home.module.css";
 import buttonStyles from "../styles/Button.module.css";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { SignedIn } from "../components/SignedIn";
 
 const Home: NextPage = () => {
   const { data: session } = useSession();
@@ -35,8 +36,11 @@ const Home: NextPage = () => {
         </Head>
 
         <main className={styles.main}>
-          Signed in as {session.user?.email} <br />
-          <button onClick={() => signOut()}>Sign out</button>
+          {session.user && session.user.email ? (
+            <SignedIn email={session.user.email} />
+          ) : (
+            ""
+          )}
           <h1 className={styles.title}>Book List</h1>
           <div className={styles.bookList}>
             {books.map(({ id, title, author }) => (
