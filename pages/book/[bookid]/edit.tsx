@@ -8,6 +8,7 @@ import styles from "../../../styles/Form.module.css";
 import { BackButton } from "../../../components/BackButton";
 import buttonStyles from "../../../styles/Button.module.css";
 import { SignedIn } from "../../../components/SignedIn";
+import { SignedOut } from "../../../components/SignedOut";
 
 const EditBook: NextPage = () => {
   const [book, setBook] = useState<Book>();
@@ -73,10 +74,9 @@ const EditBook: NextPage = () => {
     );
   }
   return (
-    <>
-      Not signed in <br />
-      <button onClick={() => signIn()}>Sign in</button>
-    </>
+    <main className={styles.main}>
+      <SignedOut />
+    </main>
   );
 };
 

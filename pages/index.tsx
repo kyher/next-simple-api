@@ -8,6 +8,7 @@ import { Card } from "../components/Card";
 import styles from "../styles/Home.module.css";
 import buttonStyles from "../styles/Button.module.css";
 import { SignedIn } from "../components/SignedIn";
+import { SignedOut } from "../components/SignedOut";
 
 const Home: NextPage = () => {
   const { data: session } = useSession();
@@ -55,10 +56,9 @@ const Home: NextPage = () => {
     );
   }
   return (
-    <>
-      Not signed in <br />
-      <button onClick={() => signIn()}>Sign in</button>
-    </>
+    <main className={styles.main}>
+      <SignedOut />
+    </main>
   );
 };
 

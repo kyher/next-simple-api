@@ -4,6 +4,7 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import styles from "../../styles/Form.module.css";
 import buttonStyles from "../../styles/Button.module.css";
 import { SignedIn } from "../../components/SignedIn";
+import { SignedOut } from "../../components/SignedOut";
 
 const Home: NextPage = () => {
   const { data: session } = useSession();
@@ -34,10 +35,9 @@ const Home: NextPage = () => {
     );
   }
   return (
-    <>
-      Not signed in <br />
-      <button onClick={() => signIn()}>Sign in</button>
-    </>
+    <main className={styles.main}>
+      <SignedOut />
+    </main>
   );
 };
 
